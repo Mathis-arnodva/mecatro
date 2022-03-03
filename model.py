@@ -61,19 +61,20 @@ class Model(object):
     def dk(self):
         """Given the speed of each of the 2 motors (m/s), 
         returns the linear speed (m/s) and rotational speed (rad/s) of a differential wheeled robot
-        
+
         Keyword Arguments:
             m1_speed {float} -- Speed of motor1 (m/s) (default: {None})
             m2_speed {float} -- Speed of motor2 (default: {None})
-        
+
         Returns:
             float -- linear speed (m/s), rotational speed (rad/s)
         """
         # TODO
-        linear_speed = (self.m1.speed +self.m2.speed)/2
-        rotation_speed = (self.m1.speed +self.m2.speed)/L
-        return linear_speed, rotation_speed
 
+        linear_speed = (self.m1.speed + self.m2.speed)/2
+        rotation_speed = (self.m1.speed - self.m2.speed)/self.l
+
+        return linear_speed, rotation_speed
     def update(self, dt):
         """Given the current state of the robot (speeds of the wheels) and a time step (dt), 
         calculates the new position of the robot.
