@@ -95,8 +95,8 @@ class Model(object):
             dxr = (dp/dtheta) * math.sin(dtheta)
             dyr = (dp/dtheta)* (1-math.cos(dtheta))
 
-        xm = dxr * math.cos(self.theta) - dyr *math.sin(dtheta)
-        ym = dyr * math.sin(self.theta) - dyr *math.cos(dtheta)
+        xm = dxr * math.cos(self.theta) - dyr *math.sin(self.theta)
+        ym = dyr * math.sin(self.theta) - dyr *math.cos(self.theta)
         # Updating the robot position
         self.x = self.x + xm  # TODO
         self.y = self.y + ym  # TODO
