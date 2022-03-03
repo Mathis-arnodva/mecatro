@@ -30,7 +30,7 @@ class Model(object):
         self.speed_acc = 0
         self.mode = 1
 
-    def __repr__(self):
+    def repr(self):
         s = "current : {} {} {}".format(self.x, self.y, self.theta)
         s = s + "\ngoal    : {} {} {}".format(self.x_goal, self.y_goal, self.theta_goal)
         s = s + "\nmotors    : {} {}".format(self.m1, self.m2)
@@ -38,21 +38,24 @@ class Model(object):
             self.acc, self.speed_acc, self.mode
         )
         return s
-
+#da = m2_speed
+#db = m1_speed
+#dp = linear_speed
+#dteta = rotational speed
     def ik(self, linear_speed, rotational_speed):
         """Given the linear speed and the rotational speed, 
         returns the speed of the wheels in a differential wheeled robot
-        
+
         Arguments:
             linear_speed {float} -- Linear speed (m/s)
             rotational_speed {float} -- Rotational speed (rad/s)
-        
+
         Returns:
             float -- Speed of motor1 (m/s), speech of motor2 (m/s)
         """
         # TODO
-        m1_speed = linear_speed + rotational_speed*(L/2) 
-        m2_speed = linear_speed - rotational_speed*(L/2) 
+        m1_speed = linear_speed - rotational_speed * (self.l/2)
+        m2_speed = linear_speed + rotational_speed * (self.l/2)
         return m1_speed, m2_speed
 
     def dk(self):
